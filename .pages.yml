@@ -1,0 +1,93 @@
+media:
+  - name: photos
+    label: Photos
+    input: public/assets/uploads
+    output: /assets/uploads
+    extensions: [jpg, jpeg, png, webp]
+    categories: [image]
+    rename: safe
+
+content:
+  - name: profile
+    label: Sunita's site profile
+    type: file
+    path: public/data/profile.json
+    format: json
+    fields:
+      - name: intro
+        label: Homepage introduction
+        type: text
+      - name: biography
+        label: About Sunita
+        type: text
+      - name: portrait
+        label: Portrait photo
+        type: image
+        required: false
+        options:
+          media: photos
+      - name: facebook_url
+        label: Facebook profile URL
+        type: string
+        required: false
+      - name: instagram_url
+        label: Instagram profile URL
+        type: string
+        required: false
+      - name: linkedin_url
+        label: LinkedIn profile URL
+        type: string
+        required: false
+  - name: stories
+    label: Journal stories
+    type: file
+    path: public/data/stories.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        type: string
+      - name: date
+        type: date
+      - name: place
+        label: Place or topic
+        type: string
+      - name: summary
+        type: text
+      - name: story
+        label: Full story
+        type: text
+      - name: cover
+        label: Cover photo
+        type: image
+        required: false
+        options:
+          media: photos
+      - name: published
+        label: Publish this story
+        type: boolean
+  - name: albums
+    label: Photo albums
+    type: file
+    path: public/data/albums.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        type: string
+      - name: place
+        label: Place or trip
+        type: string
+      - name: description
+        type: text
+      - name: photos
+        label: Album photos
+        type: image
+        options:
+          media: photos
+          multiple:
+            max: 40
+          unique: true
+      - name: published
+        label: Publish this album
+        type: boolean
